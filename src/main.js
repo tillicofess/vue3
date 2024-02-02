@@ -5,7 +5,8 @@ import router from "./router";
 import i18n from "../i18n";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { CoKoding } from "oh-vue-icons/icons";
-import { store } from '/store.js';
+import { store } from "/store.js";
+import "./assets/style.css";
 
 addIcons(CoKoding);
 

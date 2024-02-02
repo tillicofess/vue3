@@ -1,30 +1,46 @@
 <template>
-  <div>
-    <header class="p-8">
-      <div class="container mx-auto flex h-16 items-center justify-between">
-        <div class="flex items-center">
-          <button class="flex h-11 w-11 cursor-pointer items-center justify-center rounded-md bg-orange-100"
-            @click="store.toggleShow">
-            <v-icon name="co-koding" class="text-green-300" />
-          </button>
-          <span class="flex pl-4 text-xl font-bold">start.</span>
-        </div>
-        <ul class="hidden items-stretch space-x-3 md:flex">
-          <li class="flex"></li>
-          <li class="flex"></li>
-          <li class="flex"></li>
-          <li class="flex"></li>
-        </ul>
+  <div
+    class="fixed flex w-full gap-4 bg-[#FBF9F6] max-sm:items-center max-sm:p-4 sm:w-40 sm:flex-col sm:max-lg:top-4 lg:top-8"
+  >
+    <header>
+      <div class="flex items-center">
+        <span class="flex text-2xl font-bold">start.</span>
       </div>
     </header>
+    <div>
+      <a class="hover:text- cursor-pointer text-2xl" @click="store.toggleShow"
+        >all</a
+      >
+    </div>
+    <!-- <div><a class="cursor-pointer text-2xl" @click="togglecheck">light</a></div>
+    <input
+      ref="checkboxRef"
+      type="checkbox"
+      value="light"
+      class="theme-controller toggle hidden"
+    /> -->
+    <footer class="bottom-0 w-40 pb-4 max-sm:hidden sm:fixed lg:pb-8">
+      <div class="pb-2">
+        <h2 class="text-2xl">Contact</h2>
+        <h2 class="text-xl">us</h2>
+      </div>
+      <div>
+        <div>ArtMind团队</div>
+        <div class="break-all pr-4">2820668705@qq.com</div>
+      </div>
+    </footer>
     <modal />
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from "vue"
-import { store } from '../../../store.js'
-import modal from '../modal/modal.vue'
+import { ref, watch } from "vue";
+import { store } from "../../../store.js";
+import modal from "../modal/modal.vue";
+// const checkboxRef = ref(null);
+// const togglecheck = () => {
+//   checkboxRef.value.click();
+// };
 </script>
 
 <style scoped>

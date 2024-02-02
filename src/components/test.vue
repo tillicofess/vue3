@@ -1,23 +1,22 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const show = ref(true)
+const show = ref(true);
 </script>
 
 <template>
   <button @click="show = !show">Toggle</button>
   <Transition :duration="550" name="nested">
     <div v-if="show" class="outer">
-      <div class="inner">
-   			Hello
-      </div>
+      <div class="inner">Hello</div>
     </div>
   </Transition>
 </template>
 
 <style>
-.nested-enter-active, .nested-leave-active {
-	transition: all 0.3s ease-in-out;
+.nested-enter-active,
+.nested-leave-active {
+  transition: all 0.3s ease-in-out;
 }
 /* delay leave of parent element */
 .nested-leave-active {
@@ -32,12 +31,12 @@ const show = ref(true)
 
 /* we can also transition nested elements using nested selectors */
 .nested-enter-active .inner,
-.nested-leave-active .inner { 
+.nested-leave-active .inner {
   transition: all 0.3s ease-in-out;
 }
 /* delay enter of nested element */
 .nested-enter-active .inner {
-	transition-delay: 0.25s;
+  transition-delay: 0.25s;
 }
 
 .nested-enter-from .inner,

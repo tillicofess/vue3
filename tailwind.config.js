@@ -8,7 +8,10 @@ export default {
       spacing: {
         '128': '32rem',
         '168': '42rem'
-      }
+      },
+      aspectRatio: {
+        '4/3': '4 / 3',
+      },
     },
   },
   plugins: [
@@ -16,6 +19,8 @@ export default {
     "prettier-plugin-tailwindcss"
   ],
   daisyui: {
-    themes: ["light"],
+    themes: [
+      "light",
+    ],
   },
 }
