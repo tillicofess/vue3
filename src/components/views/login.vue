@@ -1,0 +1,82 @@
+<template>
+  <div class="flex min-h-screen bg-gray-200 px-4 lg:px-8">
+    <Header />
+    <div
+      class="flex flex-1 items-center justify-center mt-4 max-sm:mt-20 sm:ml-40 lg:mt-8 bg-white rounded-t-3xl"
+    >
+      <div
+        class="mx-auto select-none justify-center rounded-lg bg-white text-left align-bottom  sm:w-full sm:max-w-2xl sm:align-middle"
+      >
+        <div
+          class="mx-auto grid grid-cols-1 flex-wrap items-center justify-center rounded-xl shadow-xl lg:grid-cols-2"
+        >
+          <div class="w-full px-6 py-3">
+            <div>
+              <div class="mt-3 text-left sm:mt-5">
+                <div class="inline-flex w-full items-center">
+                  <h3
+                    class="l eading-6 text-lg font-bold text-neutral-600 lg:text-5xl"
+                  >
+                    Sign up
+                  </h3>
+                </div>
+                <div class="mt-4 text-base text-gray-500">
+                  <p>Sign up and get our newest news.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 space-y-2">
+              <div>
+                <label for="email" class="sr-only">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  class="block w-full rounded-lg border border-transparent bg-gray-50 px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out focus:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div>
+                <label for="password" class="sr-only">Password</label>
+                <input
+                  type="text"
+                  name="password"
+                  id="password"
+                  class="block w-full rounded-lg border border-transparent bg-gray-50 px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out focus:border-transparent focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
+                  placeholder="Enter your password"
+                />
+              </div>
+              <div class="mt-4 flex flex-col lg:space-y-2">
+                <button
+                  type="button"
+                  class="flex w-full items-center justify-center rounded-xl bg-blue-600 px-10 py-4 text-center text-base font-medium text-white transition duration-500 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Sign up
+                </button>
+                <a
+                  href="#"
+                  type="button"
+                  class="inline-flex justify-center py-4 text-base font-medium text-gray-500 hover:text-neutral-600 focus:text-blue-600 focus:outline-none sm:text-sm"
+                >
+                  Forgot your Password?
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="order-first hidden w-full lg:block">
+            <img
+              class="h-full rounded-l-lg bg-cover object-cover"
+              src="../../assets/img/0797.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script setup>
+import Header from "../header/header.vue";
+</script>
+<style scoped></style>

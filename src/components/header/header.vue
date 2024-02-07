@@ -1,15 +1,47 @@
 <template>
   <div
-    class="fixed flex w-full gap-4 bg-[#FBF9F6] max-sm:items-center max-sm:p-4 sm:w-40 sm:flex-col sm:max-lg:top-4 lg:top-8"
+    class="fixed flex w-full gap-4 bg-gray-200 max-sm:items-center max-sm:p-4 sm:w-40 sm:flex-col sm:max-lg:top-4 lg:top-8"
   >
     <header>
       <div class="flex items-center">
-        <span class="flex text-2xl font-bold">start.</span>
+        <span
+          v-if="$route.path === '/'"
+          class="flex select-none text-3xl font-bold text-gray-400"
+          >start.</span
+        >
+        <span
+          v-if="$route.path === '/aiChat'"
+          class="flex select-none text-3xl font-bold text-gray-400"
+          >aiChat</span
+        >
+        <span
+          v-if="$route.path === '/login'"
+          class="flex select-none text-3xl font-bold text-gray-400"
+          >login</span
+        >
       </div>
     </header>
     <div>
-      <a class="hover:text- cursor-pointer text-2xl" @click="store.toggleShow"
-        >all</a
+      <router-link
+        to="/"
+        class="cursor-pointer text-2xl hover:line-through decoration-indigo-500 decoration-4"
+        :class="{ 'text-gray-400': $route.path === '/' }"
+        >start.
+      </router-link>
+    </div>
+    <div>
+      <router-link
+        to="/login"
+        class="cursor-pointer text-2xl hover:line-through decoration-indigo-500 decoration-4"
+        :class="{ 'text-gray-400': $route.path === '/login' }"
+        >login
+      </router-link>
+    </div>
+    <div>
+      <a
+        class="cursor-pointer text-2xl hover:line-through decoration-indigo-500 decoration-4"
+        @click="store.toggleShow"
+        >work</a
       >
     </div>
     <!-- <div><a class="cursor-pointer text-2xl" @click="togglecheck">light</a></div>
@@ -20,6 +52,14 @@
       class="theme-controller toggle hidden"
     /> -->
     <footer class="bottom-0 w-40 pb-4 max-sm:hidden sm:fixed lg:pb-8">
+      <div class="mb-16">
+        <router-link
+          to="/login"
+          class="cursor-pointer text-2xl hover:line-through decoration-indigo-500 decoration-4"
+          :class="{ 'text-gray-400': $route.path === '/login' }"
+          >setting
+        </router-link>
+      </div>
       <div class="pb-2">
         <h2 class="text-2xl">Contact</h2>
         <h2 class="text-xl">us</h2>

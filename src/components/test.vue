@@ -1,52 +1,49 @@
-<script setup>
-import { ref } from "vue";
-
-const show = ref(true);
-</script>
-
 <template>
-  <button @click="show = !show">Toggle</button>
-  <Transition :duration="550" name="nested">
-    <div v-if="show" class="outer">
-      <div class="inner">Hello</div>
+  <div class="container">
+    <div class="messages" ref="messages">
+      <!-- 在这里渲染消息列表 -->
+      <div v-for="(message, index) in messages" :key="index" class="message">{{ message }}</div>
     </div>
-  </Transition>
+    <input type="text" v-model="newMessage" @keydown.enter="addMessage" placeholder="Type your message..." class="input">
+    <button @click="addMessage">122</button>
+  </div>
 </template>
 
+<script setup>
+import { ref } from 'vue';
+
+const messages = ref([]);
+const newMessage = ref('');
+
+const addMessage = () => {
+    messages.value.push(newMessage.value);
+    newMessage.value = '';
+    scrollToBottom();
+};
+
+const scrollToBottom = () => {
+  const container = $refs.messages;
+  if (container) {
+    container.scrollTop = container.scrollHeight;
+  }
+};
+</script>
+
 <style>
-.nested-enter-active,
-.nested-leave-active {
-  transition: all 0.3s ease-in-out;
-}
-/* delay leave of parent element */
-.nested-leave-active {
-  transition-delay: 0.25s;
+.container {
+  @apply flex flex-col h-full;
 }
 
-.nested-enter-from,
-.nested-leave-to {
-  /* transform: translateY(30px); */
-  opacity: 0;
+.messages {
+  @apply flex-1 overflow-y-auto;
 }
 
-/* we can also transition nested elements using nested selectors */
-.nested-enter-active .inner,
-.nested-leave-active .inner {
-  transition: all 0.3s ease-in-out;
-}
-/* delay enter of nested element */
-.nested-enter-active .inner {
-  transition-delay: 0.25s;
+.message {
+  @apply mb-4;
 }
 
-.nested-enter-from .inner,
-.nested-leave-to .inner {
-  transform: translateY(-10px);
-  /*
-  	Hack around a Chrome 96 bug in handling nested opacity transitions.
-    This is not needed in other browsers or Chrome 99+ where the bug
-    has been fixed.
-  */
-  opacity: 0.001;
+.input {
+  @apply p-2 border border-gray-300 rounded;
 }
 </style>
+

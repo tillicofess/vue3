@@ -1,10 +1,15 @@
 <template>
   <transition :duration="550" name="nested">
+    <!-- <div
+      v-if="store.show"
+      class="fixed left-24 top-8 h-80 w-80 overflow-hidden rounded-3xl border-8 border-gray-600"
+    >
+      <div class="z-10 h-full w-full overflow-hidden bg-[#F6F8FC]"> -->
     <div v-if="store.show" class="fixed inset-0 z-10 overflow-y-auto">
-      <div class="min-h-screen overflow-y-auto bg-white p-4">
+      <div class="min-h-screen overflow-y-auto bg-[#F6F8FC] z-10 p-4">
         <button
           @click="store.toggleShow"
-          class="absolute right-4 top-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+          class="absolute left-4 top-4 text-gray-500 hover:text-gray-700 focus:outline-none"
         >
           <svg
             class="h-6 w-6"
@@ -22,7 +27,21 @@
           </svg>
         </button>
         <div class="inner container mx-auto px-10 lg:px-32">
-          <span class="flex py-10 text-xl font-bold">start.</span>
+          <span
+          v-if="$route.path === '/'"
+          class="flex select-none text-3xl font-bold text-gray-400"
+          >start.</span
+        >
+        <span
+          v-if="$route.path === '/aiChat'"
+          class="flex select-none text-3xl font-bold text-gray-400"
+          >aiChat</span
+        >
+        <span
+          v-if="$route.path === '/login'"
+          class="flex select-none text-3xl font-bold text-gray-400"
+          >login</span
+        >
           <div class="h-full py-12 lg:grid lg:grid-cols-2 lg:gap-4">
             <div class="grid grid-cols-3 gap-4">
               <div>
@@ -56,9 +75,9 @@
                 <ul>
                   <li class="mb-4">
                     <router-link
-                      to="/aichat"
+                      to="/aiChat"
                       class="cursor-pointer font-bold text-slate-400 hover:text-green-400"
-                      >aichat
+                      >aiChat
                     </router-link>
                   </li>
                   <li class="mb-4">
@@ -137,7 +156,7 @@
               <div class="grid grid-cols-3 gap-4">
                 <!-- 1 -->
                 <router-link
-                  to="/aichat"
+                  to="/aiChat"
                   class="mb-4 flex min-h-[125px] cursor-pointer flex-col items-center justify-center rounded-xl bg-[#F1FAFF] p-4 text-center hover:text-green-400"
                 >
                   <h3 class="font-bold">ai对话</h3>
