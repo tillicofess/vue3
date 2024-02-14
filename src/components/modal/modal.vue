@@ -6,7 +6,7 @@
     >
       <div class="z-10 h-full w-full overflow-hidden bg-[#F6F8FC]"> -->
     <div v-if="store.show" class="fixed inset-0 z-10 overflow-y-auto">
-      <div class="min-h-screen overflow-y-auto bg-[#F6F8FC] z-10 p-4">
+      <div class="min-h-screen overflow-y-auto bg-[#F6F8FC] z-10 p-4 flex items-center">
         <button
           @click="store.toggleShow"
           class="absolute left-4 top-4 text-gray-500 hover:text-gray-700 focus:outline-none"

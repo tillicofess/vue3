@@ -1,8 +1,8 @@
 <template>
   <div
-    class="fixed flex w-full gap-4 bg-gray-200 max-sm:items-center max-sm:p-4 sm:w-40 sm:flex-col sm:max-lg:top-4 lg:top-8"
+    class="fixed flex w-full gap-2 bg-gray-200 max-sm:items-center max-sm:p-4 sm:w-40 sm:flex-col sm:max-lg:top-4 lg:top-8"
   >
-    <header>
+    <header class="sm:mb-4">
       <div class="flex items-center">
         <span
           v-if="$route.path === '/'"
@@ -19,27 +19,24 @@
           class="flex select-none text-3xl font-bold text-gray-400"
           >login</span
         >
+        <span
+          v-if="$route.path === '/tutorialChat'"
+          class="flex select-none text-3xl font-bold text-gray-400"
+          >tutorialChat</span
+        >
       </div>
     </header>
     <div>
       <router-link
         to="/"
-        class="cursor-pointer text-2xl hover:line-through decoration-indigo-500 decoration-4"
+        class="cursor-pointer text-2xl decoration-indigo-500 decoration-4 hover:line-through select-none"
         :class="{ 'text-gray-400': $route.path === '/' }"
         >start.
       </router-link>
     </div>
     <div>
-      <router-link
-        to="/login"
-        class="cursor-pointer text-2xl hover:line-through decoration-indigo-500 decoration-4"
-        :class="{ 'text-gray-400': $route.path === '/login' }"
-        >login
-      </router-link>
-    </div>
-    <div>
       <a
-        class="cursor-pointer text-2xl hover:line-through decoration-indigo-500 decoration-4"
+        class="cursor-pointer text-2xl decoration-indigo-500 decoration-4 hover:line-through select-none"
         @click="store.toggleShow"
         >work</a
       >
@@ -52,11 +49,17 @@
       class="theme-controller toggle hidden"
     /> -->
     <footer class="bottom-0 w-40 pb-4 max-sm:hidden sm:fixed lg:pb-8">
-      <div class="mb-16">
+      <div class="mb-16 grid gap-2">
         <router-link
           to="/login"
-          class="cursor-pointer text-2xl hover:line-through decoration-indigo-500 decoration-4"
+          class="cursor-pointer text-2xl decoration-indigo-500 decoration-4 hover:line-through select-none"
           :class="{ 'text-gray-400': $route.path === '/login' }"
+          >login
+        </router-link>
+        <router-link
+          to="/"
+          class="cursor-pointer text-2xl decoration-indigo-500 decoration-4 hover:line-through select-none"
+          :class="{ 'text-gray-400': $route.path === '/setting' }"
           >setting
         </router-link>
       </div>
@@ -74,13 +77,9 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { store } from "../../../store.js";
 import modal from "../modal/modal.vue";
-// const checkboxRef = ref(null);
-// const togglecheck = () => {
-//   checkboxRef.value.click();
-// };
 </script>
 
 <style scoped>
