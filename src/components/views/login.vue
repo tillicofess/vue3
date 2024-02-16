@@ -258,8 +258,9 @@ const login = async () => {
         username: username.value,
         password: password.value,
       });
-      console.log(response.data);
+      console.log(response.data.message);
       // 在这里处理登录成功的逻辑，例如保存用户信息到本地存储
+      if (response.status === 200)
       router.push("/");
     } catch (error) {
       console.error("Error logging in:", error);

@@ -4,11 +4,7 @@
       <div class="modal-action mt-0">
         <form method="dialog">
           <!-- if there is a button in form, it will close the modal -->
-          <button
-            class="btn btn-neutral btn-sm mr-4 text-base-100"
-            @click="empty"
-            ref="closeButton"
-          >
+          <button class="btn btn-neutral btn-sm mr-4 text-base-100" @click="empty" ref="closeButton">
             Close
           </button>
         </form>
@@ -45,16 +41,8 @@
         <div class="h-80 sm:flex-1">
           <div class="flex h-80" v-if="currentStep === 1">
             <div class="m-4 w-full rounded-xl bg-gray-200 p-4">
-              <input
-                type="file"
-                ref="fileInput"
-                style="display: none"
-                @change="handleFileChange"
-              />
-              <button
-                class="btn btn-accent btn-active mb-4 w-full rounded-md"
-                @click="openFileInput"
-              >
+              <input type="file" ref="fileInput" style="display: none" @change="handleFileChange" />
+              <button class="btn btn-accent btn-active mb-4 w-full rounded-md" @click="openFileInput">
                 上传图片
               </button>
               <div class="flex h-48 justify-center rounded-md bg-gray-400">
@@ -63,24 +51,12 @@
             </div>
           </div>
           <div class="flex h-80" v-else-if="currentStep === 2">
-            <form
-              @submit.prevent="submitForm"
-              class="m-4 flex w-full flex-col rounded-lg bg-gray-200 p-4"
-            >
+            <form @submit.prevent="submitForm" class="m-4 flex w-full flex-col rounded-lg bg-gray-200 p-4">
               <!-- 名字输入框 -->
               <label for="name" class="mb-4">名字:</label>
-              <input
-                type="text"
-                class="input input-bordered input-sm mb-4"
-                v-model="formData.name"
-                required
-              />
+              <input type="text" class="input input-bordered input-sm mb-4" v-model="formData.name" required />
               <label for="voice" class="mb-4">音色:</label>
-              <select
-                class="select select-sm mb-8"
-                v-model="formData.voice"
-                required
-              >
+              <select class="select select-sm mb-8" v-model="formData.voice" required>
                 <option value="soprano">Soprano</option>
                 <option value="alto">Alto</option>
                 <option value="tenor">Tenor</option>
@@ -90,41 +66,24 @@
                 <div class="flex-1">是否放入仓库:</div>
                 <div class="flex items-center">
                   <p class="mr-2">
-                    {{ formData.switchValue ? "是" : "否" }}
+                    {{ switchValue ? "是" : "否" }}
                   </p>
-                  <input
-                    type="checkbox"
-                    class="toggle"
-                    v-model="formData.switchValue"
-                    checked
-                  />
+                  <input type="checkbox" class="toggle" v-model="switchValue" checked />
                 </div>
               </div>
             </form>
           </div>
           <div class="mt-5 flex sm:mt-5">
-            <button
-              v-if="currentStep === 1"
-              class="btn btn-neutral btn-sm ml-4 text-base-100"
-              @click="nextStep"
-            >
+            <button v-if="currentStep === 1" class="btn btn-neutral btn-sm ml-4 text-base-100" @click="nextStep">
               下一步
             </button>
-            <button
-              v-if="currentStep === 2"
-              class="btn btn-neutral btn-sm ml-4 text-base-100"
-              @click="backStep"
-            >
+            <button v-if="currentStep === 2" class="btn btn-neutral btn-sm ml-4 text-base-100" @click="backStep">
               上一步
             </button>
             <div class="flex-1" v-if="currentStep === 2"></div>
             <span v-if="loading" class="loading loading-spinner"></span>
-            <button
-              v-if="currentStep === 2"
-              class="btn btn-neutral btn-sm mr-4 text-base-100"
-              @click="submitForm"
-              :disabled="loading"
-            >
+            <button v-if="currentStep === 2" class="btn btn-neutral btn-sm mr-4 text-base-100" @click="submitForm"
+              :disabled="loading">
               {{ loading ? "loading..." : "create" }}
             </button>
           </div>
@@ -134,65 +93,85 @@
   </dialog>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      image: "",
-      currentStep: 1,
-      formData: {
-        name: "",
-        voice: "soprano", // 设置默认值
-        switchValue: true,
-      },
-      loading: false,
-      Step: 1,
-    };
-  },
-  methods: {
-    openFileInput() {
-      this.$refs.fileInput.click();
-    },
-    handleFileChange(event) {
-      const file = event.target.files[0];
-      if (file) {
-        // 在这里处理上传图片的逻辑，可以调用后端 API 或其他操作
-        this.image = URL.createObjectURL(file);
-        // 清空文件输入框，以便下次选择同一文件也能触发 change 事件
-        this.$refs.fileInput.value = "";
-      }
-    },
-    empty() {
-      this.image = "";
-      this.currentStep = 1;
-    },
-    nextStep() {
-      if (this.currentStep === 1 && this.image) {
-        this.currentStep++;
-      } else {
-        alert("请选择图片");
-      }
-    },
-    backStep() {
-      if (this.currentStep === 2) {
-        this.currentStep--;
-      }
-    },
-    submitForm() {
-      // 在这里处理表单提交逻辑，可以发送到后端或进行其他操作
-      if (this.formData.name && this.formData.voice) {
-        this.loading = true;
-        console.log("表单提交:", this.formData);
-        // 模拟异步请求
-        setTimeout(() => {
-          // 在实际项目中，这里应该是向后端发起请求的地方
-          // 假设请求成功，将 loading 设置为 false，并设置响应数据
-          this.loading = false;
-        }, 2000); // 模拟请求耗时 2 秒
-      } else {
-        alert("请输入姓名或选择音色");
-      }
-    },
-  },
+<script setup>
+import { ref } from "vue";
+import axios from "axios";
+
+const image = ref("");
+const currentStep = ref(1);
+const switchValue = ref(true);
+const formData = ref({
+  name: "",
+  voice: "soprano",
+});
+const loading = ref(false);
+const fileInput = ref(null);
+
+const openFileInput = () => {
+  fileInput.value.click();
+};
+
+const handleFileChange = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    image.value = URL.createObjectURL(file);
+    console.log(image.value);
+    fileInput.value.value = "";
+  }
+};
+
+const empty = () => {
+  image.value = "";
+  currentStep.value = 1;
+};
+
+const nextStep = () => {
+  if (currentStep.value === 1 && image.value) {
+    currentStep.value++;
+  } else {
+    alert("请选择图片");
+  }
+};
+
+const backStep = () => {
+  if (currentStep.value === 2) {
+    currentStep.value--;
+  }
+};
+
+// 将 Blob URL 转换为 File 对象
+async function convertBlobUrlToFile(blobUrl) {
+  const response = await fetch(blobUrl);
+  const blob = await response.blob();
+  return new File([blob], "image.png", { type: "image/png" });
+}
+
+const submitForm = async () => {
+  if (formData.value.name && formData.value.voice) {
+    loading.value = true;
+    console.log("表单提交:", formData.value);
+    try {
+      const imgfile = await convertBlobUrlToFile(image.value);
+      const formdata = new FormData();
+      formdata.append('file', imgfile);
+      formdata.append('name', formData.value.name);
+      formdata.append('voice', formData.value.voice);
+      const response = await axios.post(
+        "http://localhost:3000/upload",
+        formdata,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data.message);
+    } catch (error) {
+      console.error(error);
+    }
+    loading.value = false;
+  } else {
+    alert("请输入姓名或选择音色");
+  }
 };
 </script>
