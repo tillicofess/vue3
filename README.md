@@ -5,3 +5,15 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+  
+## Reminder
+默认下载为vite-main.zip则文件目录为src为vite-main\vite-main\src,vite根目录`project directory`即为`vite-main\vite-main`.
+  
+## Installation
+Go to `project directory` and run (make sure you have node installed first)
+```
+cd vite C:\Users\14653\Desktop\vite-main\vite-main (If you download the zip file to the desktop)
+npm install
+npm run dev
+```
+
