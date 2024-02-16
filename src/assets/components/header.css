@@ -24,7 +24,7 @@
 
 .nested-enter-from .inner,
 .nested-leave-to .inner {
-  transform: translateX(-30px);
+  transform: translateY(-30px);
   /*
   	Hack around a Chrome 96 bug in handling nested opacity transitions.
     This is not needed in other browsers or Chrome 99+ where the bug

@@ -7,14 +7,13 @@ import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { CoKoding } from "oh-vue-icons/icons";
 import { store } from "/store.js";
 import "./assets/style.css";
-
+import axios from "axios";
 addIcons(CoKoding);
 
-createApp(App)
-  .component("VIcon", OhVueIcon)
-  .use(i18n)
-  .use(router)
-  .mount("#app");
+const app = createApp(App);
+app.provide("$axios", axios);
+
+app.component("VIcon", OhVueIcon).use(i18n).use(router).mount("#app");
 
 router.beforeEach((to, from, next) => {
   // 在路由变化时关闭 Modal

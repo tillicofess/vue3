@@ -1,6 +1,6 @@
 <template>
   <dialog id="my_modal_1" class="modal">
-    <div class="modal-box flex h-168 w-96 flex-col sm:h-128 sm:w-128">
+    <div class="modal-box flex h-128 w-96 flex-col sm:w-128">
       <div class="modal-action mt-0">
         <form method="dialog">
           <!-- if there is a button in form, it will close the modal -->
@@ -52,7 +52,7 @@
                 @change="handleFileChange"
               />
               <button
-                class="btn btn-active btn-accent mb-4 w-full rounded-md"
+                class="btn btn-accent btn-active mb-4 w-full rounded-md"
                 @click="openFileInput"
               >
                 上传图片
@@ -102,29 +102,26 @@
               </div>
             </form>
           </div>
-          <div class="mt-28 flex sm:mt-5">
+          <div class="mt-5 flex sm:mt-5">
             <button
               v-if="currentStep === 1"
-              class="btn btn-sm btn-neutral ml-4 text-base-100"
+              class="btn btn-neutral btn-sm ml-4 text-base-100"
               @click="nextStep"
             >
               下一步
             </button>
             <button
               v-if="currentStep === 2"
-              class="btn btn-sm btn-neutral ml-4 text-base-100"
+              class="btn btn-neutral btn-sm ml-4 text-base-100"
               @click="backStep"
             >
               上一步
             </button>
             <div class="flex-1" v-if="currentStep === 2"></div>
-            <span
-              v-if="loading"
-              class="loading loading-spinner"
-            ></span>
+            <span v-if="loading" class="loading loading-spinner"></span>
             <button
               v-if="currentStep === 2"
-              class="btn btn-sm btn-neutral mr-4 text-base-100"
+              class="btn btn-neutral btn-sm mr-4 text-base-100"
               @click="submitForm"
               :disabled="loading"
             >

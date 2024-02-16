@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen bg-gray-200 px-4 lg:px-8">
     <Header />
-    <div class="flex max-h-screen flex-1 flex-col sm:ml-40">
+    <div class="flex max-h-screen flex-1 flex-col sm:ml-32">
       <div class="mt-4 max-sm:mt-20 lg:mt-8"></div>
       <div
         class="grid flex-1 grid-flow-col grid-cols-1 grid-rows-6 items-center justify-center overflow-auto rounded-t-3xl bg-white"
@@ -79,10 +79,7 @@
               @keydown.enter.prevent="addBox"
             ></textarea>
           </div>
-          <button
-            v-on:click="addBox"
-            class="btn btn-md ml-2 rounded-xl"
-          >
+          <button v-on:click="addBox" class="btn btn-md ml-2 rounded-xl">
             发送
           </button>
         </div>
@@ -102,7 +99,7 @@ function addBox(event) {
   event.preventDefault(); // 阻止回车键的默认行为
 
   // 处理回车键的换行问题
-  if (event.key === 'Enter' && !event.shiftKey) {
+  if (event.key === "Enter" && !event.shiftKey) {
     console.log(chat.value);
     messages.value.push({ text: chat.value, sender: "user" });
     chat.value = ""; // 清空 chat 值

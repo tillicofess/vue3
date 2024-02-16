@@ -6,7 +6,9 @@
     >
       <div class="z-10 h-full w-full overflow-hidden bg-[#F6F8FC]"> -->
     <div v-if="store.show" class="fixed inset-0 z-10 overflow-y-auto">
-      <div class="min-h-screen overflow-y-auto bg-[#F6F8FC] z-10 p-4 flex items-center">
+      <div
+        class="z-10 flex min-h-screen items-center overflow-y-auto bg-[#F6F8FC] p-4"
+      >
         <button
           @click="store.toggleShow"
           class="absolute left-4 top-4 text-gray-500 hover:text-gray-700 focus:outline-none"
@@ -28,22 +30,22 @@
         </button>
         <div class="inner container mx-auto px-10 lg:px-32">
           <span
-          v-if="$route.path === '/'"
-          class="flex select-none text-3xl font-bold text-gray-400"
-          >start.</span
-        >
-        <span
-          v-if="$route.path === '/aiChat'"
-          class="flex select-none text-3xl font-bold text-gray-400"
-          >aiChat</span
-        >
-        <span
-          v-if="$route.path === '/login'"
-          class="flex select-none text-3xl font-bold text-gray-400"
-          >login</span
-        >
+            v-if="$route.path === '/'"
+            class="flex select-none text-3xl font-bold text-gray-400"
+            >start.</span
+          >
+          <span
+            v-if="$route.path === '/aiChat'"
+            class="flex select-none text-3xl font-bold text-gray-400"
+            >aiChat</span
+          >
+          <span
+            v-if="$route.path === '/login'"
+            class="flex select-none text-3xl font-bold text-gray-400"
+            >login</span
+          >
           <div class="h-full py-12 lg:grid lg:grid-cols-2 lg:gap-4">
-            <div class="grid grid-cols-3 gap-4">
+            <!-- <div class="grid grid-cols-3 gap-4">
               <div>
                 <h1 class="mb-4 font-bold">Dashboards</h1>
                 <ul>
@@ -148,7 +150,7 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> -->
             <div>
               <div>
                 <h1 class="mb-8 font-bold">Quick Links</h1>
@@ -159,7 +161,7 @@
                   to="/aiChat"
                   class="mb-4 flex min-h-[125px] cursor-pointer flex-col items-center justify-center rounded-xl bg-[#F1FAFF] p-4 text-center hover:text-green-400"
                 >
-                  <h3 class="font-bold">ai对话</h3>
+                  <h3 class="font-bold">aiChat</h3>
                   <p class="text-sm text-[#B1B4BD]">first version</p>
                 </router-link>
                 <!-- 2 -->
@@ -179,12 +181,12 @@
               </div>
               <div class="grid grid-flow-col grid-rows-2 gap-x-4">
                 <!-- 4 -->
-                <a
-                  class="col-span-2 row-span-1 mb-4 flex min-h-[125px] flex-col items-center justify-center rounded-xl bg-[#E4FFF4] p-4 text-center"
+                <router-link to="/"
+                  class="col-span-2 row-span-1 mb-4 flex min-h-[125px] flex-col items-center justify-center rounded-xl bg-[#E4FFF4] p-4 text-center hover:text-green-400"
                 >
-                  <h3 class="font-bold">ai对话</h3>
+                  <h3 class="font-bold">Start.</h3>
                   <p class="text-sm text-[#B1B4BD]">first version</p>
-                </a>
+                </router-link>
                 <div class="col-span-2 grid grid-cols-subgrid">
                   <!-- 5 -->
                   <a

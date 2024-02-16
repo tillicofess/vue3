@@ -1,66 +1,54 @@
 <template>
   <div
-    class="fixed flex w-full gap-2 bg-gray-200 max-sm:items-center max-sm:p-4 sm:w-40 sm:flex-col sm:max-lg:top-4 lg:top-8"
+    class="fixed flex gap-3 bg-gray-200 max-sm:left-0 max-sm:right-0 max-sm:items-center max-sm:p-4 sm:bottom-0 sm:top-0 sm:w-32 sm:flex-col sm:max-lg:top-0 sm:max-lg:py-4 lg:py-8"
   >
-    <header class="sm:mb-4">
-      <div class="flex items-center">
-        <span
-          v-if="$route.path === '/'"
-          class="flex select-none text-3xl font-bold text-gray-400"
-          >start.</span
-        >
-        <span
-          v-if="$route.path === '/aiChat'"
-          class="flex select-none text-3xl font-bold text-gray-400"
-          >aiChat</span
-        >
-        <span
-          v-if="$route.path === '/login'"
-          class="flex select-none text-3xl font-bold text-gray-400"
-          >login</span
-        >
-        <span
-          v-if="$route.path === '/tutorialChat'"
-          class="flex select-none text-3xl font-bold text-gray-400"
-          >tutorialChat</span
-        >
-      </div>
-    </header>
-    <div>
-      <router-link
-        to="/"
-        class="cursor-pointer text-2xl decoration-indigo-500 decoration-4 hover:line-through select-none"
-        :class="{ 'text-gray-400': $route.path === '/' }"
-        >start.
-      </router-link>
-    </div>
-    <div>
+    <span
+      v-if="$route.path === '/'"
+      class="flex select-none text-3xl font-bold sm:hidden"
+      >Start.</span
+    >
+    <span
+      v-if="$route.path === '/aiChat'"
+      class="flex select-none text-3xl font-bold sm:hidden"
+      >aiChat</span
+    >
+    <span
+      v-if="$route.path === '/login'"
+      class="flex select-none text-3xl font-bold sm:hidden"
+      >login</span
+    >
+    <router-link
+      to="/"
+      class="cursor-pointer select-none text-3xl font-bold decoration-indigo-500 decoration-4 hover:line-through max-sm:hidden"
+      :class="{ 'text-emerald-500': $route.path === '/' }"
+      >Start.
+    </router-link>
+    <router-link
+      to="/aiChat"
+      class="cursor-pointer select-none text-3xl font-bold decoration-indigo-500 decoration-4 hover:line-through max-sm:hidden"
+      :class="{ 'text-emerald-500': $route.path === '/aiChat' }"
+      >aiChat
+    </router-link>
+    <div class="flex flex-1 justify-end">
       <a
-        class="cursor-pointer text-2xl decoration-indigo-500 decoration-4 hover:line-through select-none"
+        class="cursor-pointer select-none text-3xl font-bold decoration-indigo-500 decoration-4 hover:line-through sm:hidden"
         @click="store.toggleShow"
-        >work</a
+        >Work</a
       >
     </div>
-    <!-- <div><a class="cursor-pointer text-2xl" @click="togglecheck">light</a></div>
-    <input
-      ref="checkboxRef"
-      type="checkbox"
-      value="light"
-      class="theme-controller toggle hidden"
-    /> -->
-    <footer class="bottom-0 w-40 pb-4 max-sm:hidden sm:fixed lg:pb-8">
-      <div class="mb-16 grid gap-2">
+    <footer class="max-sm:hidden">
+      <div class="mb-16 grid gap-3">
         <router-link
           to="/login"
-          class="cursor-pointer text-2xl decoration-indigo-500 decoration-4 hover:line-through select-none"
-          :class="{ 'text-gray-400': $route.path === '/login' }"
-          >login
+          class="cursor-pointer select-none text-3xl font-bold decoration-indigo-500 decoration-4 hover:line-through"
+          :class="{ 'text-emerald-500': $route.path === '/login' }"
+          >Login
         </router-link>
         <router-link
           to="/"
-          class="cursor-pointer text-2xl decoration-indigo-500 decoration-4 hover:line-through select-none"
-          :class="{ 'text-gray-400': $route.path === '/setting' }"
-          >setting
+          class="cursor-pointer select-none text-3xl font-bold decoration-indigo-500 decoration-4 hover:line-through"
+          :class="{ 'text-emerald-500': $route.path === '/setting' }"
+          >Setting
         </router-link>
       </div>
       <div class="pb-2">
