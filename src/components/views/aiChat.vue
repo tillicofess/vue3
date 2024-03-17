@@ -1,13 +1,19 @@
 <template>
-  <div class="flex min-h-screen bg-gray-200 px-4 lg:px-8">
+  <div class="flex min-h-screen bg-[#0092FF] bg-opacity-50 pr-4">
     <Header />
-    <div class="flex max-h-screen flex-1 flex-col sm:ml-32">
-      <div class="mt-4 max-sm:mt-20 lg:mt-8"></div>
+    <div
+      class="flex ml-4 max-h-screen flex-1 flex-col"
+      :class="{
+        'sm:ml-16': !store.sidebarCollapsed,
+        'sm:ml-40': store.sidebarCollapsed,
+      }"
+    >
+      <div class="mt-4"></div>
       <div
-        class="grid flex-1 grid-flow-col grid-cols-1 grid-rows-6 items-center justify-center overflow-auto rounded-t-3xl bg-white"
+        class="mb-4 grid flex-1 grid-flow-col grid-cols-1 grid-rows-6 items-center justify-center overflow-auto rounded-3xl bg-white"
       >
         <!-- begin video -->
-        <div class="z-1 row-span-2 flex justify-center">
+        <div class="row-span-2 flex justify-center">
           <video
             ref="videoPlayer"
             autoplay
@@ -22,38 +28,35 @@
             <div class="flex h-20 w-full items-center justify-center">
               <button
                 type="button"
-                class="h-10 w-20 rounded-xl font-semibold dark:bg-gray-100 dark:text-gray-800"
+                class="h-10 w-20 bg-[#F2F2F2] font-semibold text-gray-800"
                 onclick="my_modal_1.showModal()"
               >
-                Create
+                {{ $t("create") }}
               </button>
               <avator />
               <button
                 type="button"
-                class="mx-8 h-10 w-20 rounded-xl font-semibold dark:bg-gray-100 dark:text-gray-800"
+                class="mx-8 h-10 w-20 bg-[#F2F2F2] font-semibold text-gray-800"
               >
-                Save
+                {{ $t("save") }}
               </button>
               <button
                 type="button"
-                class="h-10 w-20 rounded-xl font-semibold dark:bg-gray-100 dark:text-gray-800"
+                class="h-10 w-20 bg-[#F2F2F2] font-semibold text-gray-800"
               >
-                Basic
+                {{ $t("basic") }}
               </button>
             </div>
             <div class="flex h-28 w-full items-start justify-center">
               <routerLink to="/tutorialChat" class="text-blue-600 underline">
-                Tutorial entrance
+                {{ $t("know") }}
               </routerLink>
             </div>
           </div>
           <div
             class="scrollable-div flex w-2/3 flex-1 flex-col overflow-y-auto p-4"
           >
-            <div class="other-message">
-              Greetings! Today your shirt matches the color of your eyes very
-              well
-            </div>
+            <div class="other-message">你好，有什么我可以帮你的吗？</div>
             <div
               v-for="(message, index) in messages"
               :key="index"
@@ -71,15 +74,15 @@
             class="flex w-2/3 items-center rounded-3xl border-2 border-gray-200"
           >
             <textarea
-              ref="textarea"
               class="mx-6 w-full resize-none outline-none"
-              :rows="rows"
               placeholder="输入信息"
               v-model="chat"
+              :rows="rows"
               @keydown.enter.prevent="addBox"
+              @input="handleInput"
             ></textarea>
           </div>
-          <button v-on:click="addBox" class="btn btn-md ml-2 rounded-xl">
+          <button v-on:click="addBox1" class="btn btn-md ml-2 rounded-xl">
             发送
           </button>
         </div>
@@ -89,22 +92,81 @@
 </template>
 <script setup>
 import { ref } from "vue";
+import { store } from "../../../store.js";
 import Header from "../header/header.vue";
 import avator from "../modal/avator.vue";
+import axios from "axios";
+
 const messages = ref([]);
 const chat = ref("");
-let rows = 1;
+const send = ref("");
+const reply = ref("");
+const rows = ref(1);
+const lines = ref();
 
-function addBox(event) {
+const addBox = async (event) => {
   event.preventDefault(); // 阻止回车键的默认行为
 
   // 处理回车键的换行问题
   if (event.key === "Enter" && !event.shiftKey) {
-    console.log(chat.value);
-    messages.value.push({ text: chat.value, sender: "user" });
-    chat.value = ""; // 清空 chat 值
+    try {
+      console.log("chat.value = " + chat.value);
+      messages.value.push({ text: chat.value, sender: "user" });
+      send.value = chat.value;
+      console.log("send.value = " + send.value);
+      chat.value = "";
+      const response = await axios.post("http://localhost:3000/text", {
+        chat: send.value,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      send.value = "";
+      console.log(response.data.message);
+      const response1 = await axios.get("http://localhost:3000/text", {});
+      reply.value = response1.data.message;
+      messages.value.push({ text: reply.value, sender: "other" });
+    } catch (error) {
+      console.error(error);
+    }
+  } else {
+    if (event.key === "Enter" && event.shiftKey && rows.value < 4) {
+      rows.value += 1;
+      chat.value += "\n";
+    }
   }
-}
+};
+
+const addBox1 = async () => {
+  try {
+    console.log("chat.value = " + chat.value);
+    messages.value.push({ text: chat.value, sender: "user" });
+    send.value = chat.value;
+    console.log("send.value = " + send.value);
+    chat.value = "";
+    console.log(chat.value);
+    const response = await axios.post("http://localhost:3000/text", {
+      chat: send.value,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    send.value = "";
+    console.log(send.value);
+    console.log(response.data.message);
+    const response1 = await axios.get("http://localhost:3000/text", {});
+    reply.value = response1.data.message;
+    messages.value.push({ text: reply.value, sender: "other" });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const handleInput = () => {
+  // 根据实际内容的行数更新 rows 的值
+  lines.value = chat.value.split("\n").length;
+  rows.value = Math.min(lines.value, 4);
+};
 </script>
 <style scoped>
 @import "../../assets/components/aiChat.css";

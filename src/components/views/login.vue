@@ -4,7 +4,7 @@
     <div class="flex w-full flex-row">
       <!-- Sidebar -->
       <div
-        class="hidden flex-col justify-between bg-[#ffe85c] lg:flex lg:max-w-sm lg:p-8 xl:max-w-lg xl:p-12"
+        class="hidden flex-col justify-between bg-emerald-500 lg:flex lg:max-w-sm lg:p-8 xl:max-w-lg xl:p-12"
       >
         <div class="flex items-center justify-start space-x-3">
           <span class="h-8 w-8 rounded-full bg-black"></span>
@@ -149,18 +149,18 @@
               <input
                 type="text"
                 placeholder="Username"
-                class="flex rounded-lg border-2 border-black px-3 py-2 font-medium placeholder:font-normal md:px-4 md:py-3"
+                class="flex rounded-lg border-2 border-neutral px-3 py-2 font-medium outline-none placeholder:font-normal md:px-4 md:py-3"
                 v-model="username"
               />
               <input
                 type="text"
                 placeholder="Password"
-                class="flex rounded-lg border-2 border-black px-3 py-2 font-medium placeholder:font-normal md:px-4 md:py-3"
+                class="flex rounded-lg border-2 border-neutral px-3 py-2 font-medium outline-none placeholder:font-normal md:px-4 md:py-3"
                 v-model="password"
               />
               <button
                 type="submit"
-                class="flex flex-none items-center justify-center rounded-lg border-2 border-black bg-black px-3 py-2 font-medium text-white md:px-4 md:py-3"
+                class="btn btn-neutral flex border-2 border-neutral px-3 py-2 font-medium text-white md:px-4 md:py-3"
               >
                 Sign in
               </button>
@@ -260,8 +260,7 @@ const login = async () => {
       });
       console.log(response.data.message);
       // 在这里处理登录成功的逻辑，例如保存用户信息到本地存储
-      if (response.status === 200)
-      router.push("/");
+      if (response.status === 200) router.push("/");
     } catch (error) {
       console.error("Error logging in:", error);
       // 在这里处理登录失败的逻辑

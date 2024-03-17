@@ -6,8 +6,10 @@ export default {
   theme: {
     extend: {
       spacing: {
+        '120': '30rem',
         '128': '32rem',
-        '168': '42rem'
+        '168': '42rem',
+        '288': '72rem',
       },
       aspectRatio: {
         '4/3': '4 / 3',

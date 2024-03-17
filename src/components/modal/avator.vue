@@ -4,7 +4,11 @@
       <div class="modal-action mt-0">
         <form method="dialog">
           <!-- if there is a button in form, it will close the modal -->
-          <button class="btn btn-neutral btn-sm mr-4 text-base-100" @click="empty" ref="closeButton">
+          <button
+            class="btn btn-neutral btn-sm mr-4 text-base-100"
+            @click="empty"
+            ref="closeButton"
+          >
             Close
           </button>
         </form>
@@ -41,8 +45,16 @@
         <div class="h-80 sm:flex-1">
           <div class="flex h-80" v-if="currentStep === 1">
             <div class="m-4 w-full rounded-xl bg-gray-200 p-4">
-              <input type="file" ref="fileInput" style="display: none" @change="handleFileChange" />
-              <button class="btn btn-accent btn-active mb-4 w-full rounded-md" @click="openFileInput">
+              <input
+                type="file"
+                ref="fileInput"
+                style="display: none"
+                @change="handleFileChange"
+              />
+              <button
+                class="btn btn-accent btn-active mb-4 w-full rounded-md"
+                @click="openFileInput"
+              >
                 上传图片
               </button>
               <div class="flex h-48 justify-center rounded-md bg-gray-400">
@@ -51,12 +63,24 @@
             </div>
           </div>
           <div class="flex h-80" v-else-if="currentStep === 2">
-            <form @submit.prevent="submitForm" class="m-4 flex w-full flex-col rounded-lg bg-gray-200 p-4">
+            <form
+              @submit.prevent="submitForm"
+              class="m-4 flex w-full flex-col rounded-lg bg-gray-200 p-4"
+            >
               <!-- 名字输入框 -->
               <label for="name" class="mb-4">名字:</label>
-              <input type="text" class="input input-bordered input-sm mb-4" v-model="formData.name" required />
+              <input
+                type="text"
+                class="input input-bordered input-sm mb-4"
+                v-model="formData.name"
+                required
+              />
               <label for="voice" class="mb-4">音色:</label>
-              <select class="select select-sm mb-8" v-model="formData.voice" required>
+              <select
+                class="select select-sm mb-8"
+                v-model="formData.voice"
+                required
+              >
                 <option value="soprano">Soprano</option>
                 <option value="alto">Alto</option>
                 <option value="tenor">Tenor</option>
@@ -68,22 +92,39 @@
                   <p class="mr-2">
                     {{ switchValue ? "是" : "否" }}
                   </p>
-                  <input type="checkbox" class="toggle" v-model="switchValue" checked />
+                  <input
+                    type="checkbox"
+                    class="toggle"
+                    v-model="switchValue"
+                    checked
+                  />
                 </div>
               </div>
             </form>
           </div>
           <div class="mt-5 flex sm:mt-5">
-            <button v-if="currentStep === 1" class="btn btn-neutral btn-sm ml-4 text-base-100" @click="nextStep">
+            <button
+              v-if="currentStep === 1"
+              class="btn btn-neutral btn-sm ml-4 text-base-100"
+              @click="nextStep"
+            >
               下一步
             </button>
-            <button v-if="currentStep === 2" class="btn btn-neutral btn-sm ml-4 text-base-100" @click="backStep">
+            <button
+              v-if="currentStep === 2"
+              class="btn btn-neutral btn-sm ml-4 text-base-100"
+              @click="backStep"
+            >
               上一步
             </button>
             <div class="flex-1" v-if="currentStep === 2"></div>
             <span v-if="loading" class="loading loading-spinner"></span>
-            <button v-if="currentStep === 2" class="btn btn-neutral btn-sm mr-4 text-base-100" @click="submitForm"
-              :disabled="loading">
+            <button
+              v-if="currentStep === 2"
+              class="btn btn-neutral btn-sm mr-4 text-base-100"
+              @click="submitForm"
+              :disabled="loading"
+            >
               {{ loading ? "loading..." : "create" }}
             </button>
           </div>
@@ -153,9 +194,9 @@ const submitForm = async () => {
     try {
       const imgfile = await convertBlobUrlToFile(image.value);
       const formdata = new FormData();
-      formdata.append('file', imgfile);
-      formdata.append('name', formData.value.name);
-      formdata.append('voice', formData.value.voice);
+      formdata.append("file", imgfile);
+      formdata.append("name", formData.value.name);
+      formdata.append("voice", formData.value.voice);
       const response = await axios.post(
         "http://localhost:3000/upload",
         formdata,
@@ -163,7 +204,7 @@ const submitForm = async () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       console.log(response.data.message);
     } catch (error) {
