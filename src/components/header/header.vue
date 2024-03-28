@@ -1,118 +1,57 @@
 <template>
   <div
-    class="fixed z-10 flex overflow-x-hidden sm:bottom-0 sm:top-0 sm:flex-col sm:py-8 sm:max-lg:top-0"
-    :class="{
-      'sm:w-16': !store.sidebarCollapsed,
-      'sm:w-40': store.sidebarCollapsed,
-      'bg-gray-200': store.sidebarCollapsed,
-    }"
+    class="fixed left-0 right-0 z-20 flex items-center justify-between bg-white px-4 py-3"
+    :class="{ ' shadow-md': isShadow }"
   >
-    <div class="mb-4 flex w-16 justify-center text-blue-800 max-sm:hidden">
-      <a class="cursor-pointer select-none" @click="store.toggleSidebar"
-        ><v-icon
-          name="bi-grid-fill"
-          class="h-10 w-10 rounded-full p-2 hover:bg-emerald-50"
-      /></a>
+    <div class="p-1 text-xl tracking-widest">
+      <router-link to="/" class="">Art Mind</router-link>
     </div>
     <!-- begin default -->
-    <router-link
-      to="/"
-      class="text-md mx-2 flex h-12 cursor-pointer select-none items-center gap-4 whitespace-nowrap rounded-3xl max-sm:hidden bg-opacity-50"
-      :class="{
-        'bg-[#0092FF]': $route.path === '/',
-        'text-white': $route.path === '/',
-        'text-black': $route.path !== '/',
-        hidden: !store.sidebarCollapsed,
-      }"
-      ><v-icon name="hi-home" class="w-16" />
-      <span
-        :class="{
-          hidden: !store.sidebarCollapsed,
-        }"
-        >{{ $t("home") }}</span
+    <div class="flex items-center gap-4 max-sm:hidden">
+      <!-- begin chat -->
+      <router-link to="/startFun" class="hover:text-purple-400"
+      :class="{ 'hidden': $route.path === '/startFun' }">
+        <v-icon name="hi-book-open" class="mx-2" />
+        <span>{{ $t("docs") }}</span>
+      </router-link>
+      <!-- begin function -->
+      <router-link
+        to="/startFun"
+        target="_blank"
+        class="hover:text-purple-400"
       >
-    </router-link>
-    <!-- begin chat -->
-    <router-link
-      to="/tutorialChat"
-      class="text-md mx-2 flex h-12 cursor-pointer select-none items-center gap-4 whitespace-nowrap rounded-3xl max-sm:hidden bg-opacity-50"
-      :class="{
-        'bg-[#0092FF]': $route.path === '/tutorialChat',
-        'text-white': $route.path === '/tutorialChat',
-        'text-black': $route.path !== '/tutorialChat',
-        hidden: !store.sidebarCollapsed,
-      }"
-      ><v-icon name="hi-book-open" class="w-16" />
-      <span
-        :class="{
-          hidden: !store.sidebarCollapsed,
-        }"
-        >{{ $t("docs") }}</span
+        <v-icon name="hi-puzzle" class="mx-2" />
+        <span>{{ $t("function") }}</span>
+      </router-link>
+      <router-link
+        to="/login"
+        class="rounded-3xl bg-black px-8 py-1 text-white"
       >
-    </router-link>
-    <!-- begin function -->
-    <router-link
-      to="/aiChat"
-      class="text-md mx-2 flex h-12 cursor-pointer select-none items-center gap-4 whitespace-nowrap rounded-3xl max-sm:hidden bg-opacity-50"
-      :class="{
-        'bg-[#0092FF]': $route.path === '/aiChat',
-        'text-white': $route.path === '/aiChat',
-        'text-black': $route.path !== '/aiChat',
-        hidden: !store.sidebarCollapsed,
-      }"
-      ><v-icon name="hi-cog" class="w-16" />
-      <span
-        :class="{
-          hidden: !store.sidebarCollapsed,
-        }"
-        >{{ $t("function") }}</span
-      >
-    </router-link>
-    <!-- begin setting -->
-    <router-link
-      to="/setting"
-      class="text-md mx-2 flex h-12 cursor-pointer select-none items-center gap-4 whitespace-nowrap rounded-3xl max-sm:hidden bg-opacity-50"
-      :class="{
-        'bg-[#0092FF]': $route.path === '/setting',
-        'text-white': $route.path === '/setting',
-        'text-black': $route.path !== '/setting',
-        hidden: !store.sidebarCollapsed,
-      }"
-      ><v-icon name="hi-cog" class="w-16" />
-      <span
-        :class="{
-          hidden: !store.sidebarCollapsed,
-        }"
-        >{{ $t("setting") }}</span
-      >
-    </router-link>
-    <!-- begin data -->
-    <router-link
-      to="/data"
-      class="text-md mx-2 flex h-12 cursor-pointer select-none items-center gap-4 whitespace-nowrap rounded-3xl max-sm:hidden bg-opacity-50"
-      :class="{
-        'bg-[#0092FF]': $route.path === '/data',
-        'text-white': $route.path === '/data',
-        'text-black': $route.path !== '/data',
-        hidden: !store.sidebarCollapsed,
-      }"
-      ><v-icon name="hi-desktop-computer" class="w-16" />
-      <span
-        :class="{
-          hidden: !store.sidebarCollapsed,
-        }"
-        >{{ $t("data") }}</span
-      >
-    </router-link>
-    <div class="flex flex-1 justify-end"></div>
-    <modal />
+        <span>{{ $t("login in") }}</span>
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { store } from "../../../store.js";
-import modal from "../modal/modal.vue";
+import { ref, onMounted, onUnmounted } from "vue";
+
+const isShadow = ref(false);
+
+const handleScroll = () => {
+  const bottomOffset =
+    document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+  isShadow.value =
+    bottomOffset < document.documentElement.scrollHeight - window.innerHeight;
+};
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <style scoped>

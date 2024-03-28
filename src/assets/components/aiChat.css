@@ -1,24 +1,17 @@
 .user-message {
-  background-color: #b1c0cb;
-  color: white;
+  color: black;
   margin-bottom: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
   word-wrap: break-word;
   word-break: break-all;
   width: fit-content;
 }
 
 .other-message {
-  background-color: #f8f9fd;
   color: black;
   margin-bottom: 0.5rem; /* 保持与用户聊天框的间距一致 */
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
   word-wrap: break-word;
   word-break: break-all;
   max-width: fit-content;
-  align-self: flex-end; /* 使 AI 聊天框居右 */
 }
 
   
@@ -36,4 +29,12 @@
   
   .scrollable-div::-webkit-scrollbar-track {
     background-color: #eee; /* 滚动条轨道颜色 */
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .back{
+    background-image: url(../svg/composition-9.svg);
   }

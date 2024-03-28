@@ -1,43 +1,60 @@
 <template>
-    <section class="py-6 dark:bg-gray-800 dark:text-gray-100">
-        <div class="container flex flex-col items-center justify-center mx-auto space-y-8 mt-20 px-4">
-            <h1 class="text-3xl font-bold leading-none text-center">Our team</h1>
-            <p class="max-w-3xl text-center dark:text-gray-400 text-gray-400  text-lg">At a assumenda quas cum earum ut itaque commodi saepe
-                rem aspernatur quam natus quis nihil quod, hic explicabo doloribus magnam neque, exercitationem eius
-                sunt!</p>
-            <div class="flex flex-row flex-wrap-reverse justify-center">
-                <div class="flex flex-col justify-center m-8 text-center">
-                    <img alt=""
-                        class="self-center flex-shrink-0 w-24 h-24 mb-4 bg-center bg-cover rounded-full dark:bg-gray-500"
-                        src="../../assets/img/0.jpg">
-                    <p class="text-xl font-semibold leading-tight">tillicofess</p>
-                    <p class="dark:text-gray-400">Web Designer</p>
-                </div>
-                <div class="flex flex-col justify-center m-8 text-center">
-                    <img alt=""
-                        class="self-center flex-shrink-0 w-24 h-24 mb-4 bg-center bg-cover rounded-full dark:bg-gray-500"
-                        src="https://source.unsplash.com/100x100/?portrait?1">
-                    <p class="text-xl font-semibold leading-tight">Leroy Jenkins</p>
-                    <p class="dark:text-gray-400">Visual Designer</p>
-                </div>
-                <div class="flex flex-col justify-center m-8 text-center">
-                    <img alt=""
-                        class="self-center flex-shrink-0 w-24 h-24 mb-4 bg-center bg-cover rounded-full dark:bg-gray-500"
-                        src="https://source.unsplash.com/100x100/?portrait?2">
-                    <p class="text-xl font-semibold leading-tight">Leroy Jenkins</p>
-                    <p class="dark:text-gray-400">Visual Designer</p>
-                </div>
-                <div class="flex flex-col justify-center m-8 text-center">
-                    <img alt=""
-                        class="self-center flex-shrink-0 w-24 h-24 mb-4 bg-center bg-cover rounded-full dark:bg-gray-500"
-                        src="https://source.unsplash.com/100x100/?portrait?3">
-                    <p class="text-xl font-semibold leading-tight">Leroy Jenkins</p>
-                    <p class="dark:text-gray-400">Visual Designer</p>
-                </div>
-            </div>
+  <section class="bg-[#F4E8FF] py-32 dark:bg-gray-800 dark:text-gray-100">
+    <div
+      class="container mx-auto flex flex-col items-center justify-center space-y-8 px-4"
+    >
+      <h1 class="text-center text-5xl font-bold leading-none tracking-wide">
+        {{ $t("tuanDui") }}
+      </h1>
+      <p class="max-w-3xl tracking-wider text-center text-xl text-gray-400 dark:text-gray-400">
+        At a assumenda quas cum earum ut itaque commodi saepe rem aspernatur
+        quam natus quis nihil quod, hic explicabo doloribus magnam neque,
+        exercitationem eius sunt!
+      </p>
+      <div class="grid lg:grid-cols-4 grid-cols-2 gap-4 justify-center">
+        <!-- 1 -->
+        <div class="flex flex-col justify-center text-center">
+          <img
+            alt=""
+            class="mb-4 flex-shrink-0 self-center rounded-full bg-cover bg-center dark:bg-gray-500"
+            src="../../assets/svg/op/op1.svg"
+          />
+          <p class="text-2xl font-semibold leading-tight">tillicofess</p>
+          <p class="text-md dark:text-gray-400">{{ $t("wangYeSheJiShi") }}</p>
         </div>
-    </section>
+        <!-- 2 -->
+        <div class="flex flex-col justify-center text-center">
+          <img
+            alt=""
+            class="mb-4 flex-shrink-0 self-center rounded-full bg-cover bg-center dark:bg-gray-500"
+            src="../../assets/svg/op/op2.svg"
+          />
+          <p class="text-2xl font-semibold leading-tight">tillicofess</p>
+          <p class="text-md dark:text-gray-400">{{ $t("wangYeSheJiShi") }}</p>
+        </div>
+        <!-- 3 -->
+        <div class="flex flex-col justify-center text-center">
+          <img
+            alt=""
+            class="mb-4 flex-shrink-0 self-center rounded-full bg-cover bg-center dark:bg-gray-500"
+            src="../../assets/svg/op/op3.svg"
+          />
+          <p class="text-2xl font-semibold leading-tight">tillicofess</p>
+          <p class="text-md dark:text-gray-400">{{ $t("wangYeSheJiShi") }}</p>
+        </div>
+        <!-- 4 -->
+        <div class="flex flex-col justify-center text-center">
+          <img
+            alt=""
+            class="mb-4 flex-shrink-0 self-center rounded-full bg-cover bg-center dark:bg-gray-500"
+            src="../../assets/svg/op/op4.svg"
+          />
+          <p class="text-2xl font-semibold leading-tight">tillicofess</p>
+          <p class="text-md dark:text-gray-400">{{ $t("wangYeSheJiShi") }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
-<script setup>
-</script>
+<script setup></script>

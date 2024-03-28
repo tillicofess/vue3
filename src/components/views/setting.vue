@@ -48,8 +48,8 @@
                     <div class="flex">
                       <div
                         class="cursor-pointer select-none text-lg"
-                        :class="{ 'text-emerald-300': $i18n.locale === 'zh-CN' }"
-                        @click="changeLang('zh-CN')"
+                        :class="{ 'text-emerald-300': $i18n.locale === 'zh' }"
+                        @click="changeLang('zh')"
                       >
                         中文
                       </div>

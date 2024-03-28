@@ -1,10 +1,7 @@
 <template>
   <div class="flex min-h-screen">
     <Header />
-    <div class="flex min-h-screen flex-1 flex-col" :class="{
-      'sm:ml-0': !store.sidebarCollapsed,
-      'sm:ml-40': store.sidebarCollapsed,
-    }">
+    <div class="flex min-h-screen flex-1 flex-col">
       <content />
     </div>
   </div>
